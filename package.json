@@ -17,5 +17,8 @@
         "laravel-mix": "^1.0",
         "lodash": "^4.17.4",
         "vue": "^2.5.7"
+    },
+    "resolutions": {
+        "image-webpack-loader/imagemin-pngquant": "5.0.1"
     }
 }
