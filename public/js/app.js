@@ -41933,6 +41933,49 @@ window.VueComponent['ninecon-form'] = Vue.component('ninecon-form', {
     file: function file($new, $old) {
       console.log($new, $old);
     }
+  },
+  methods: {
+    checkForm: function checkForm(e) {
+      var $that = this;
+      var invalid = 0;
+      $(this.$el).find(":input").each(function () {
+        var $this = $(this);
+
+        if ($(this).prop('required')) {
+          if (!$this.val()) {
+            $this.addClass('is-invalid');
+            invalid++;
+          }
+        }
+
+        var re;
+
+        switch ($this.prop('type')) {
+          case 'email':
+            re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+            if (re.test($this.val())) {
+              $this.addClass('is-invalid');
+              invalid++;
+            }
+
+            break;
+
+          case 'tel':
+            re = /^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{4}$/;
+
+            if (re.test($this.val())) {
+              $this.addClass('is-invalid');
+              invalid++;
+            }
+
+            break;
+        }
+
+        if ($this.hasClass('is-invalid')) $this.addClass('is-valid');
+      });
+      if (invalid) e.preventDefault();
+    }
   }
 });
 
