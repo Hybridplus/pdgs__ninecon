@@ -41923,6 +41923,14 @@ window.VueComponent['ninecon-form'] = Vue.component('ninecon-form', {
     if (!this.brand) {
       this.$set(this, 'brand', this.brandOptions[0]);
     }
+
+    $(this.$el).find(":input").each(function () {
+      var $this = $(this);
+      $this.on('change focus', function () {
+        $(this).removeClass('is-invalid');
+        $(this).removeClass('is-valid');
+      });
+    });
   },
   watch: {
     brand: function brand($new, $old) {
@@ -41941,7 +41949,7 @@ window.VueComponent['ninecon-form'] = Vue.component('ninecon-form', {
       $(this.$el).find(":input").each(function () {
         var $this = $(this);
 
-        if ($(this).prop('required')) {
+        if ($this.prop('required')) {
           if (!$this.val()) {
             $this.addClass('is-invalid');
             invalid++;
@@ -41954,7 +41962,7 @@ window.VueComponent['ninecon-form'] = Vue.component('ninecon-form', {
           case 'email':
             re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-            if (re.test($this.val())) {
+            if (!re.test($this.val())) {
               $this.addClass('is-invalid');
               invalid++;
             }
@@ -41962,19 +41970,40 @@ window.VueComponent['ninecon-form'] = Vue.component('ninecon-form', {
             break;
 
           case 'tel':
-            re = /^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{4}$/;
-
-            if (re.test($this.val())) {
-              $this.addClass('is-invalid');
-              invalid++;
-            }
-
+            // re = /^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{4}$/;
+            // if(!re.test($this.val())){
+            //     $this.addClass('is-invalid');
+            //     invalid++;
+            // }
             break;
         }
 
-        if ($this.hasClass('is-invalid')) $this.addClass('is-valid');
+        if (!$this.hasClass('is-invalid')) $this.addClass('is-valid');
       });
-      if (invalid) e.preventDefault();
+      e.preventDefault();
+
+      if (!invalid) {
+        axios({
+          method: 'POST',
+          url: $(this.$el).prop('action'),
+          data: {
+            fullName: this.fullName,
+            address: this.address,
+            phoneHome: this.phoneHome,
+            phoneMobile: this.phoneMobile,
+            email: this.email,
+            brand: this.brand,
+            product: this.product,
+            date: this.date,
+            place: this.place,
+            // file: "",
+            freetext: this.freetext,
+            hours: this.hours
+          }
+        }).then(function (response) {
+          if (!!response.status && response.status == 200) window.location.href = "/finish";
+        });
+      }
     }
   }
 });

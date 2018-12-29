@@ -10,3 +10,7 @@ form.form-rtl select {
   direction: rtl;
 }
 
+#app {
+  padding-bottom: 60px;
+}
+

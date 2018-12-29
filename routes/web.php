@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('index');
 });
+Route::post('submit-form', 'NineconController@actionSubmitForm');
+Route::get('finish', function(){
+    return view('finish');
+});
