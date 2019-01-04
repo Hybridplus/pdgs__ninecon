@@ -24,5 +24,8 @@
     },
     "resolutions": {
         "image-webpack-loader/imagemin-pngquant": "5.0.1"
+    },
+    "dependencies": {
+        "priority-web-sdk": "^2.1.5"
     }
 }

@@ -6,7 +6,8 @@
  */
 
 require('./bootstrap');
-
+require('priority-web-sdk')
+    
 window.Vue = require('vue');
 window.VueComponent = {};
 
