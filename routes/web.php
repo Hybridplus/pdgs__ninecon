@@ -18,3 +18,4 @@ Route::post('submit-form', 'NineconController@actionSubmitForm');
 Route::get('finish', function(){
     return view('finish');
 });
+Route::post('proxy', "ProxyController@actionProxy");
