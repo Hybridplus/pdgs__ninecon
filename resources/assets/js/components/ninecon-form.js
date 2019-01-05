@@ -205,6 +205,19 @@ window.VueComponent['ninecon-form'] = Vue.component('ninecon-form', {
                         window.location.href = "/finish";
                 })
             }
+        },
+        checkFile : function ($event) {
+            let file = $event.target.files[0];
+            let availableTypes = ['image/jpeg',  'image/png'];
+            if(!(availableTypes.indexOf(file.type) + 1)){
+                $event.target.value = "";
+                alert("Available types: .jpeg, .jpg, .png");
+            }
+
+            if(file.size > 1048576) {
+                $event.target.value = "";
+                alert("Max file size 1mb");
+            }
         }
     }
 });

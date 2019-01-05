@@ -91,9 +91,9 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="place" class="col-12 col-md-3 col-lg-2 col-form-label">* מקום רכישה:</label>
+            <label for="place" class="col-12 col-md-3 col-lg-2 col-form-label">מקום רכישה:</label>
             <div class="col-12 col-md-9 col-lg-6">
-                <input type="text" class="form-control" id="place" v-model="place" required>
+                <input type="text" class="form-control" id="place" v-model="place">
                 <div class="invalid-feedback">
                     אנא הזן מקום רכישה:
                 </div>
@@ -102,8 +102,7 @@
         <div class="form-group row">
             <label for="file" class="col-12 col-md-3 col-lg-2 col-form-label">* הכנסת חשבונית רכישה:</label>
             <div class="col-12 col-md-9 col-lg-6">
-                <label for="file" class="text-success">טען קובץ</label>
-                <input type="file" class="form-control d-none" id="file">
+                <input type="file" class="form-control" v-on:change="checkFile($event)" id="file" accept=".jpg, .png">
             </div>
         </div>
         <div class="form-group row">
@@ -116,13 +115,13 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="hours" class="col-12 col-md-3 col-lg-2 col-form-label">מקום רכישה:</label>
+            <label for="hours" class="col-12 col-md-3 col-lg-2 col-form-label">שעות נוחות לחזרה ללקוח:</label>
             <div class="col-12 col-md-9 col-lg-6">
                 <input type="text" class="form-control" id="hours" v-model="hours">
             </div>
         </div>
 
-        <button type="button" class="btn btn-primary" v-on:click="checkForm">Submit</button>
+        <button type="button" class="btn btn-primary" v-on:click="checkForm">שלח</button>
     </form>
 @endsection
 
