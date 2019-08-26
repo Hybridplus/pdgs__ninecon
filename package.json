@@ -26,6 +26,7 @@
         "image-webpack-loader/imagemin-pngquant": "5.0.1"
     },
     "dependencies": {
-        "priority-web-sdk": "^2.1.5"
+        "priority-web-sdk": "^2.1.5",
+        "vue2-datepicker": "^2.10.0"
     }
 }
