@@ -6,13 +6,17 @@
  */
 
 require('./bootstrap');
-require('priority-web-sdk')
+// require('priority-web-sdk');
     
 window.Vue = require('vue');
 window.VueComponent = {};
 
-require('./components/NineConComponent.vue')
-require('./components/ninecon-form')
+require('vue2-datepicker');
+require('./components/ninecon-test');
+require('./components/ninecon-prod');
+require('./components/ninecon-form');
+require('./components/warranty-form');
+require('./components/test-form-1/test-form-1')
 
 
 
@@ -30,4 +34,5 @@ require('./components/ninecon-form')
         });
 
         Vue.component('')
+        $('body').trigger('loginReady');
     })

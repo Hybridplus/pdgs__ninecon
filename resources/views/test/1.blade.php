@@ -5,8 +5,8 @@
         <div class="container">
             <div class="row">
                 <div class="col text-right">
-                    <h2 class="border-bottom border-success">טופס פתיחת קריאת שרות</h2>
-                    <ninecon-form></ninecon-form>
+                    <h2 class="border-bottom border-success">טופס פתיחת קריאת שרות לגרילים</h2>
+                    <test-form-1></test-form-1>
                 </div>
             </div>
         </div>
@@ -64,15 +64,6 @@
         </div>
 
         <div class="form-group row">
-            <label for="brand" class="col-12 col-md-3 col-lg-2 col-form-label">* סוג:</label>
-            <div class="col-12 col-md-9 col-lg-6">
-                <select id="brand" class="form-control" v-model="type" required>
-                    <option v-for="option in typeOptions" :value="option" :selected="option == type">@{{ option }}</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="form-group row">
             <label for="brand" class="col-12 col-md-3 col-lg-2 col-form-label">* משפחה:</label>
             <div class="col-12 col-md-9 col-lg-6">
                 <select id="brand" class="form-control" v-model="brand" required>
@@ -85,27 +76,15 @@
             <label for="product" class="col-12 col-md-3 col-lg-2 col-form-label">* מוצר:</label>
             <div class="col-12 col-md-9 col-lg-6">
                 <select id="product" class="form-control" v-model="product" required>
-                    <option v-for="option in productOptions" :value="option.value" :selected="option == product">@{{ option.title }}</option>
+                    <option v-for="option in productOptions" :value="option" :selected="option == product">@{{ option }}</option>
                 </select>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="serial" class="col-12 col-md-3 col-lg-2 col-form-label">מספר סידורי:</label>
-            <div class="col-12 col-md-9 col-lg-6 input-group">
-                <input type="text" class="form-control" id="serial" v-model="serial" data-toggle="popover" data-placement="top">
-                <div class="input-group-append">
-                    <button type="button" class="btn btn-default js-serial-toogle" aria-label="Help">
-                        <span class="far fa-question-circle"></span>
-                    </button>
-                </div>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="date" class="col-12 col-md-3 col-lg-2 col-form-label">* תאריך רכישה:</label>
             <div class="col-12 col-md-9 col-lg-6">
-                <date-picker :lang="lang" v-model="date"></date-picker>
+                <input type="date" class="form-control" id="date" v-model="date" required>
                 <div class="invalid-feedback">
                     אנא הזן תאריך רכישה:
                 </div>
@@ -115,12 +94,6 @@
             <label for="file" class="col-12 col-md-3 col-lg-2 col-form-label">* הכנסת חשבונית רכישה:</label>
             <div class="col-12 col-md-9 col-lg-6">
                 <input type="file" class="form-control" v-on:change="checkFile($event)" id="file" accept=".jpg, .png">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="file" class="col-12 col-md-3 col-lg-2 col-form-label">תמונות התקלות:</label>
-            <div class="col-12 col-md-9 col-lg-6">
-                <input type="file" class="form-control" v-on:change="checkFiles($event)" id="takalot" accept=".jpg, .png" multiple>
             </div>
         </div>
         <div class="form-group row">
@@ -137,22 +110,13 @@
     </form>
 @endsection
 
-<script type="x-template" id="ninecon-form">
+<script type="x-template" id="test-form-1">
     @yield('form')
 </script>
 
-@section("popover-template")
-    <div class="popover" role="tooltip">
-        <div class="arrow"></div>
-        <h3 class="popover-header">
-            המספר הסידורי נמצא בצד הפנימי של דלת הגריל:
-        </h3>
-        <div class="popover-body">
-            <img src="images/serial.jpg" class="img-fluid"/>
-        </div>
-    </div>
-@endsection
-
-<script type="x-template" id="popover-template">
-    @yield('popover-template')
+<script>
+    var priorityReady = function () {
+        window.isPriorityReady = true;
+        $('body').trigger('loginReady')
+    }
 </script>

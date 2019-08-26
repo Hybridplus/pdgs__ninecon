@@ -7,11 +7,11 @@ window._ = require('lodash');
  * code may be modified to fit the specific needs of your application.
  */
 
-try {
-    window.$ = window.jQuery = require('jquery');
-
-    // require('bootstrap-sass');
-} catch (e) {}
+// try {
+//     window.$ = window.jQuery = require('jquery');
+//
+//     // require('bootstrap-sass');
+// } catch (e) {}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -21,7 +21,18 @@ try {
 
 window.axios = require('axios');
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+
+const rawSend = XMLHttpRequest.prototype.send;
+
+XMLHttpRequest.prototype.send = function () {
+    if(!this._hooked){
+        this._hooked = true;
+        this.setRequestHeader('X-CSRF-TOKEN', token.content);
+        // this.setRequestHeader('Access-Control-Allow-Origin', '*');
+    }
+    rawSend.apply(this, arguments);
+};
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that

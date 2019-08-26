@@ -5,8 +5,8 @@
         <div class="container">
             <div class="row">
                 <div class="col text-right">
-                    <h2 class="border-bottom border-success">טופס פתיחת קריאת שרות</h2>
-                    <ninecon-form></ninecon-form>
+                    <h2 class="border-bottom border-success">תעודת אחריות</h2>
+                    <warranty-form></warranty-form>
                 </div>
             </div>
         </div>
@@ -63,7 +63,7 @@
             <label class="col-12 col-form-label font-weight-bold">פרטי המוצר:</label>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row" v-if="false">
             <label for="brand" class="col-12 col-md-3 col-lg-2 col-form-label">* סוג:</label>
             <div class="col-12 col-md-9 col-lg-6">
                 <select id="brand" class="form-control" v-model="type" required>
@@ -117,27 +117,11 @@
                 <input type="file" class="form-control" v-on:change="checkFile($event)" id="file" accept=".jpg, .png">
             </div>
         </div>
-        <div class="form-group row">
-            <label for="file" class="col-12 col-md-3 col-lg-2 col-form-label">תמונות התקלות:</label>
-            <div class="col-12 col-md-9 col-lg-6">
-                <input type="file" class="form-control" v-on:change="checkFiles($event)" id="takalot" accept=".jpg, .png" multiple>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="freetext" class="col-12 col-md-3 col-lg-2 col-form-label">* הסבר על התקלה:</label>
-            <div class="col-12 col-md-9 col-lg-6">
-                <textarea class="form-control" id="freetext" v-model="freetext" required></textarea>
-                <div class="invalid-feedback">
-                    התקלה:
-                </div>
-            </div>
-        </div>
-
         <button type="button" class="btn btn-primary" v-on:click="checkForm">שלח</button>
     </form>
 @endsection
 
-<script type="x-template" id="ninecon-form">
+<script type="x-template" id="warranty-form">
     @yield('form')
 </script>
 

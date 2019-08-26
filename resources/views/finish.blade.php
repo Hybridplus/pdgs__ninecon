@@ -6,10 +6,12 @@
             <div class="row">
                 <div class="col text-right m-t-2">
                     <span class="font-weight-bold">הודעה</span>
-                    <p>פנייתך נקלטה במערכת,</p>
-                    <p>אנו נחזור אלייך בהקדם האפשרי</p>
-                    <p>&nbsp;</p>
-                    <p>צוות שרות לקוחות - Camptown</p>
+                    <p>
+                        תודה על פנייתך
+                    </p>
+                    <p>
+                        ניין מוצרי צריכה בע"מ
+                    </p>
                 </div>
             </div>
         </div>

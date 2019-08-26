@@ -1,11 +1,11 @@
-window.VueComponent['ninecon-form'] = Vue.component('ninecon-form', {
-    template: '#ninecon-form',
+window.VueComponent['warranty-form'] = Vue.component('warranty-form', {
+    template: '#warranty-form',
     extends : window.VueComponent['ninecon-prod'],
     computed: {
         searchFilters: function(){
             return [{
                 field: "FAMILYNAME",
-                fromval:  "אוהלים",
+                fromval:  "גרילים",
                 toval: "גרילים",
                 op: "=",
                 sort: 1,
@@ -42,18 +42,10 @@ window.VueComponent['ninecon-form'] = Vue.component('ninecon-form', {
                         // }
                         break;
                     case 'file' :
-                        if(this.id == 'file'){
-                            if(!that.checkFile()){
-                                $this.addClass('is-invalid');
-                                invalid++;
-                            }
-                        } else {
-                            if(!that.checkFiles()){
-                                $this.addClass('is-invalid');
-                                invalid++;
-                            }
+                        if(!that.checkFile()){
+                            $this.addClass('is-invalid');
+                            invalid++;
                         }
-
                         break;
                 }
                 if(!$this.hasClass('is-invalid'))
@@ -108,10 +100,10 @@ window.VueComponent['ninecon-form'] = Vue.component('ninecon-form', {
                 .then(function(){
                     return that.CUSTPERSONNEL.fieldUpdate('HOMEPHONE', that.phoneHome);
                 },function(){
-                        that.showLoader(false);
-                        alert('רשומה זו כבר קיימת במסך');
-                        window.location.reload();
-                        throw new Error('רשומה זו כבר קיימת במסך');
+                    that.showLoader(false);
+                    alert('רשומה זו כבר קיימת במסך');
+                    window.location.reload();
+                    throw new Error('רשומה זו כבר קיימת במסך');
                 })
                 .then(function(){
                     return that.CUSTPERSONNEL.fieldUpdate('CELLPHONE', that.phoneMobile);
@@ -138,7 +130,6 @@ window.VueComponent['ninecon-form'] = Vue.component('ninecon-form', {
                 .then(function(){
                     return that.CUSTPERSONNEL.endCurrentForm();
                 })
-
                 .then(function(){
                     return that.DOCUMENTS_Q.choose('NAME', nameUnique)
                 })
@@ -162,8 +153,7 @@ window.VueComponent['ninecon-form'] = Vue.component('ninecon-form', {
                 .then(function(EXTFILES){
                     that.EXTFILES = EXTFILES;
                     let kabalaImage = $(that.$el).find('#file')[0].files;
-                    let takalotImages = $(that.$el).find('#takalot')[0].files;
-                    return that.saveImages(0, kabalaImage, that.saveImages, takalotImages);
+                    return that.saveImages(0, kabalaImage);
                 });
         }
     }

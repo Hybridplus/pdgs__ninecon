@@ -13,7 +13,11 @@
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');
+Route::get('warranty-card', function(){
+    return view('warranty');
+})->name('warranty');
+
 Route::post('submit-form', 'NineconController@actionSubmitForm');
 Route::get('finish', function(){
     return view('finish');
